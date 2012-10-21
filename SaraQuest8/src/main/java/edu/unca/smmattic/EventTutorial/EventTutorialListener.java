@@ -35,13 +35,9 @@ public class EventTutorialListener implements Listener {
 	public EventTutorialListener(EventTutorial plugin) {
 		// Register the listener
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
-
 		this.plugin = plugin;
 	}
     
-	/*
-	 * Send the sample message to all players that join
-	 */
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		event.getPlayer().sendMessage(
@@ -53,7 +49,6 @@ public class EventTutorialListener implements Listener {
 		if (event.getBlock().getType() == Material.SAND) {
 			event.getPlayer().sendMessage("Destroying sand? Really? That seems pointless.");
 		}
-		
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -66,7 +61,6 @@ public class EventTutorialListener implements Listener {
 			event.getPlayer().setAllowFlight(false);
 			}
 		}
-
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)
@@ -76,38 +70,9 @@ public class EventTutorialListener implements Listener {
 			event.getPlayer().sendMessage("Stop building with dirt. Have some dignity.");
 		}
 	}
-	
-	
-	/**@EventHandler(priority = EventPriority.LOW)
-	public void demoEvent(PlayerInteractEvent event) {
-		if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
-			Block b = event.getClickedBlock();
-			
-			if (b != null) {
-				Location loc = b.getLocation();
-				loc.getWorld().strikeLightning(loc);
-				b.setType(Material.FIRE);
-				event.getPlayer().sendMessage("you are dangerous");
-				plugin.logger.info(event.getPlayer() + " is blowing things up");
-			}
-		}
-	}  **/
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
     	event.getPlayer().sendMessage("Good job, you found a " + event.getRightClicked().getClass().getInterfaces()[0].getSimpleName() + ". Are you going to kill it now and show us what a good hunter you are?");
     }
-   /** public void clickWithStick(PlayerInteractEntityEvent event) {
-        if ((event.getRightClicked() instanceof Animals)) {
-            Player player2 = (Player) event.getRightClicked();
-            //Player player1 = event.getPlayer();
- 
-            //player1.sendMessage("You clicked on " + player2.getName() + "with a stick!");
-            player2.sendMessage(player2.getName() + "clicked on you!");
-        }
-    } **/
-
-
-
-
 }
